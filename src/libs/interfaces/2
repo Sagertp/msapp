@@ -1,0 +1,100 @@
+import React from "react";
+import Product from "./Product";
+
+import Idvr from "../../libs/interfaces/dvr";
+
+import image1 from "../../assets/image1.jpg";
+import image2 from "../../assets/image2.jpg";
+import image3 from "../../assets/image3.jpg";
+
+const data:Idvr[] = [
+  {
+    id: 1,
+    title: "Dvr Hikvision",
+    description: "Es de 16 Canales",
+    price: 100,
+    image: image1,
+    compression: "h264",
+    resolution: "1080p",
+    videoInput: "4ch",
+    videoOutput: "1 hdmi",
+    audioInput: "1 audio ch",
+    audioOutput: "1 rca",
+    capacity: "6 TB",
+    dimension: "14 x 23",
+    weights: "24 kg",
+  },
+  {
+    id: 2,
+    title: "Dvr Hikvision",
+    description: "Es de 16 Canales",
+    price: 100,
+    image: image2,
+    compression: "h264",
+    resolution: "1080p",
+    videoInput: "4ch",
+    videoOutput: "1 hdmi",
+    audioInput: "1 audio ch",
+    audioOutput: "1 rca",
+    capacity: "6 TB",
+    dimension: "14 x 23",
+    weights: "24 kg",
+  },
+];
+
+const Products = () => {
+  return (
+    <div className="container d-flex justify-content-center align-items-center h-100">
+      <div className="row">
+        {data.map(
+          ({
+            id,
+            title,
+            description,
+            price,
+            image,
+            compression,
+            resolution,
+            videoInput,
+            videoOutput,
+            audioInput,
+            audioOutput,
+            capacity,
+            dimension,
+            weights,
+          }) => (
+            <div className="col-md-3" key={id}>
+              <Product
+                id={id}
+                title={title}
+                description
+                {...description}
+                price
+                {...price}
+                image
+                {...image}
+                compression
+                {...compression}
+                resolution
+                {...resolution}
+                videoInput
+                {...videoInput}
+                videoOutput
+                {...videoOutput}
+                audioInput
+                {...audioInput}
+                audioOutput={audioOutput}
+                capacity
+                {...capacity}
+                dimension={dimension}
+                weights={weights}
+              />
+            </div>
+          )
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default Products;
