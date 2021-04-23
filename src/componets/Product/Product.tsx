@@ -1,7 +1,7 @@
 import React from "react";
 import Idvr from "../../libs/interfaces/dvr";
 
-const Product = (prop: Idvr) => {
+const Product = (prop) => {
   return (
     <>
       <div className="col-item">
@@ -9,7 +9,7 @@ const Product = (prop: Idvr) => {
           <img
             src={prop.image}
             className="img-responsive"
-            alt="Image of Product"
+            alt="Product in action"
           />
           <hr />
         </div>
@@ -32,7 +32,7 @@ const Product = (prop: Idvr) => {
                   type="button"
                   className="btn btn-primary"
                   data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
+                  data-bs-target={"#"+prop.id}
                 >
                   Ver más detalles
                 </button>
@@ -45,7 +45,7 @@ const Product = (prop: Idvr) => {
       {/* Modal Section*/}
       <div
         className="modal fade"
-        id="exampleModal"
+        id={prop.id}
         tabIndex={-1}
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -69,7 +69,7 @@ const Product = (prop: Idvr) => {
                       <img
                         src={prop.image}
                         className="img-responsive"
-                        alt="Image of Product"
+                        alt="Product in action"
                       />
                     </div>
                   </div>
@@ -87,15 +87,15 @@ const Product = (prop: Idvr) => {
                       </li>
                       <li className="list-group-item">
                         {" "}
-                        <p>Compresion: {prop.features.compression}</p>{" "}
+                        <p>Compresion: {prop.compression}</p>{" "}
                       </li>
                       <li className="list-group-item">
                         {" "}
-                        <p>Disco duro: {prop.features.capacity}</p>
+                        <p>Disco duro: {prop.capacity}</p>
                       </li>
                       <li className="list-group-item">
                         {" "}
-                        <p>Resolucion: {prop.features.resolution}</p>{" "}
+                        <p>Resolucion: {prop.resolution}</p>{" "}
                       </li>
                     </ul>
                   </div>

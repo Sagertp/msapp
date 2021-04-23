@@ -5,13 +5,11 @@ interface Icamera {
   description: string;
   price: number;
   image: string;
-  features: {
-    compression: string;
-    resolution: string;
-    capacity: string;
-    dimension: string;
-    weights: string;
-  };
+  compression: string;
+  resolution: string;
+  capacity: string;
+  dimension: string;
+  weights: string;
 }
 
 export default Icamera;

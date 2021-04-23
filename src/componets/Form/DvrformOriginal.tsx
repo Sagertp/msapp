@@ -1,36 +1,71 @@
 import React, { ChangeEvent, useState } from "react";
 import functionsProps from "../../libs/interfaces/functionsProps";
 import Idvr from "../../libs/interfaces/dvr";
-
+{/*
 const DvrForm = (prop: functionsProps) => {
   const initialState: Idvr = {
+    id: 0,
     name: "",
     manufacturer: "",
     description: "",
     price: 0,
     image: "",
-    compression: "",
-    resolution: "",
-    videoInput: "",
-    videoOutput: "",
-    audioInput: "",
-    audioOutput: "",
-    capacity: "",
-    dimension: "",
-    weights: "",
+    features: {
+      compression: "",
+      resolution: "",
+      videoInput: "",
+      videoOutput: "",
+      audioInput: "",
+      audioOutput: "",
+      capacity: "",
+      dimension: "",
+      weights: "",
+    },
   };
 
   const [values, setValues] = useState<Idvr>(initialState);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    const { name, value } = e.target;
-    setValues({...values, [name]: value})
+    const _name: string = e.target.name;
+    const value: string = e.target.value;
+    inputSave(_name, value);
+    setValues(initialState);
+    console.log(values);
+  };
+
+  const inputSave = (_name: string, value: string) => {
+    for (const p in Object.keys(values)) {
+      if (_name === Object.keys(values)[p]) {
+        values[_name] = value;
+      } else {
+        for (const l in Object.keys(values.features)) {
+          if (_name === Object.keys(values.features)[l]) {
+            values.features[_name] = value;
+          }
+        }
+      }
+    }
+  };
+
+  const resetValues = (values: Idvr) => {
+    for (const i in Object.keys(values)) {
+      if (values[i] === Object.keys(values)[i]) {
+        values[i] = "";
+      } else {
+        for (const j in Object.keys(values.features)) {
+          if (values.features[j] === Object.keys(values.features)[j]) {
+            values.features[j] = "";
+          }
+        }
+      }
+    }
   };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
     prop.addOrEditProduct(values);
-    setValues({...initialState})
+    resetValues(values);
+    console.log(values);
   };
 
   return (
@@ -78,7 +113,6 @@ const DvrForm = (prop: functionsProps) => {
           Descripcion.
         </label>
         <input
-          value={values.description}
           name="description"
           onChange={handleInputChange}
           type="text"
@@ -96,7 +130,6 @@ const DvrForm = (prop: functionsProps) => {
           Precio.
         </label>
         <input
-          value={values.price}
           name="price"
           onChange={handleInputChange}
           type="text"
@@ -114,7 +147,6 @@ const DvrForm = (prop: functionsProps) => {
           Imagen del Equipo.
         </label>
         <input
-          value={values.image}
           name="image"
           onChange={handleInputChange}
           type="text"
@@ -134,7 +166,6 @@ const DvrForm = (prop: functionsProps) => {
           Compresion.
         </label>
         <input
-          value={values.compression}
           name="compression"
           onChange={handleInputChange}
           type="text"
@@ -152,7 +183,6 @@ const DvrForm = (prop: functionsProps) => {
           Resolucion.
         </label>
         <input
-          value={values.resolution}
           name="resolution"
           onChange={handleInputChange}
           type="text"
@@ -170,7 +200,6 @@ const DvrForm = (prop: functionsProps) => {
           Canales de video.
         </label>
         <input
-          value={values.videoInput}
           name="videoInput"
           onChange={handleInputChange}
           type="text"
@@ -188,7 +217,6 @@ const DvrForm = (prop: functionsProps) => {
           Salida de video.
         </label>
         <input
-          value={values.videoOutput}
           name="videoOutput"
           onChange={handleInputChange}
           type="text"
@@ -206,7 +234,6 @@ const DvrForm = (prop: functionsProps) => {
           Canales de audio.
         </label>
         <input
-          value={values.audioInput}
           name="audioInput"
           onChange={handleInputChange}
           type="text"
@@ -224,7 +251,6 @@ const DvrForm = (prop: functionsProps) => {
           Salida de audio.
         </label>
         <input
-          value={values.audioOutput}
           name="audioOutput"
           onChange={handleInputChange}
           type="text"
@@ -242,7 +268,6 @@ const DvrForm = (prop: functionsProps) => {
           Disco Duro.
         </label>
         <input
-      value={values.capacity}
           name="capacity"
           onChange={handleInputChange}
           type="text"
@@ -260,7 +285,6 @@ const DvrForm = (prop: functionsProps) => {
           Dimensiones del equipo.
         </label>
         <input
-          value={values.dimension}
           name="dimension"
           onChange={handleInputChange}
           type="text"
@@ -278,7 +302,6 @@ const DvrForm = (prop: functionsProps) => {
           Peso.
         </label>
         <input
-          value={values.weights}
           name="weights"
           onChange={handleInputChange}
           type="text"
@@ -298,4 +321,13 @@ const DvrForm = (prop: functionsProps) => {
   );
 };
 
+{
+  /*
+  TODO
+  1.- the propertys value of input tag don't reflects the change of state.
+  2.- refactorin de setValues funtion.
+
 export default DvrForm;
+
+  */
+}

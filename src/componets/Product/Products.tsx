@@ -1,49 +1,64 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Product from "./Product";
 
-import Idvr from "../../libs/interfaces/dvr";
-
-import image1 from "../../assets/image1.png";
-import image2 from "../../assets/image2.png";
-import image3 from "../../assets/image3.jpg";
-
-const data: Idvr[] = [
-  {
-    id: 1,
-    name: "Dvr Hikvision",
-    manufacturer: "Hikvision",
-    description: "Es de 16 Canales",
-    price: 100,
-    image: image1,
-    features: {
-      compression: "h264",
-      resolution: "1080p",
-      videoInput: "4ch",
-      videoOutput: "1 hdmi",
-      audioInput: "1 audio ch",
-      audioOutput: "1 rca",
-      capacity: "6 TB",
-      dimension: "14 x 23",
-      weights: "24 kg",
-    },
-  },
-];
+import { db } from "../../libs/interfaces/firebase";
 
 const Products = () => {
+  const [products, setProductd] = useState([]);
+
+  const getProducts = () => {
+    db.collection("products").onSnapshot((querySnapshot) => {
+      const prod: any = [];
+      querySnapshot.forEach((doc) => {
+        prod.push({ ...doc.data(), id: doc.id });
+      });
+      setProductd(prod);
+    });
+  };
+
+  useEffect(() => {
+    console.log("Getting Data...");
+    getProducts();
+  }, []);
+
   return (
     <div className="container d-flex justify-content-center align-items-center h-100">
       <div className="row">
-        {data.map(
-          ({ id, name, manufacturer, description, price, image, features }) => (
+        {products.map(
+          ({
+            id,
+            name,
+            manufacturer,
+            description,
+            price,
+            image,
+            compression,
+            resolution,
+            videoInput,
+            videoOutput,
+            audioInput,
+            audioOutput,
+            capacity,
+            dimension,
+            weights,
+          }) => (
             <div className="col-md-3" key={id}>
-	      <Product
-                id={id}
+              <Product
+		id={id}
                 name={name}
-		manufacturer={manufacturer}
+                manufacturer={manufacturer}
                 description={description}
                 price={price}
                 image={image}
-                features={features}
+                compression={compression}
+                resolution={resolution}
+                videoInput={videoInput}
+                videoOutput={videoOutput}
+                audioInput={audioInput}
+                audioOutput={audioOutput}
+                capacity={capacity}
+                dimension={dimension}
+                weights={weights}
               />
             </div>
           )
