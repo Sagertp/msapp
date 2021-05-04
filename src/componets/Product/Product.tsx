@@ -1,5 +1,4 @@
 import React from "react";
-import Idvr from "../../libs/interfaces/dvr";
 
 const Product = (prop) => {
   return (
@@ -32,7 +31,7 @@ const Product = (prop) => {
                   type="button"
                   className="btn btn-primary"
                   data-bs-toggle="modal"
-                  data-bs-target={"#"+prop.id}
+                  data-bs-target={"#" + prop.id}
                 >
                   Ver más detalles
                 </button>
